@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    background-image: url('images/bg.jpg'); /* Фон */
+    background-image: url('bg.jpg'); /* Фон */
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
