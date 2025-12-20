@@ -48,3 +48,99 @@
     </div>
 
     <!-- Страница подтверждения заказа -->
+        <div class="container" id="confirmation-page" style="display: none;">
+        <h1>Подтверждение Заказа</h1>
+        <div class="order-details">
+            <p>Выбрано: <span id="chosen-operator"></span></p>
+            <p>Стоимость: <span id="chosen-price"></span> руб.</p>
+            <p class="description">Ваша eSIM будет доступна после подтверждения оплаты. Номер уже **зарегистрирован** на случайный паспорт. Базовый тариф активирован.</p>
+            <p>Номер для подключения: Случайный (Сгенерирован: <span id="generated-phone-number">+7 9XXXXXXX</span>)</p>
+        </div>
+        <h3>Выберите способ оплаты:</h3>
+        <div class="payment-options">
+            <button class="payment-button" id="crypto-payment-btn">Оплатить криптовалютой</button>
+            <button class="payment-button" id="sbp-payment-btn">Оплатить через СБП</button>
+        </div>
+        <button class="back-button" onclick="showPage('main-selection-page')">Назад к выбору</button>
+    </div>
+
+    <!-- Страница оплаты криптовалютой -->
+    <div class="container" id="crypto-payment-page" style="display: none;">
+        <h1>Оплата криптовалютой</h1>
+        <div class="payment-info-box">
+            <p>К оплате: <strong id="crypto-amount-rub"></strong> руб.</p>
+            <p>Курс USDT: 1 USDT = <span id="usdt-rate">95</span> руб.</p>
+            <p>Курс BTC: 1 BTC = <span id="btc-rate">6 000 000</span> руб.</p>
+            <p class="payment-timer">Оплата действительна: <span id="crypto-timer">15:00</span></p>
+        </div>
+
+        <h3>Выберите монету:</h3>
+        <div class="currency-selector">
+            <button class="currency-button active" id="usdt-select-btn">USDT TRC20</button>
+            <button class="currency-button" id="btc-select-btn">BTC</button>
+        </div>
+
+        <div class="address-box" id="usdt-address-display">
+            <p>Адрес для оплаты USDT TRC20:</p>
+            <p class="crypto-address">TTXL8srvCqom7RebeyZAjUwyAcTK9R9SD4</p>
+            <button class="copy-button" data-address="TTXL8srvCqom7RebeyZAjUwyAcTK9R9SD4">Скопировать адрес</button>
+            <p>Сумма в USDT: <strong id="crypto-amount-usdt"></strong></p>
+        </div>
+
+        <div class="address-box" id="btc-address-display" style="display: none;">
+            <p>Адрес для оплаты BTC:</p>
+            <p class="crypto-address">bc1qn6ye3evk12cj04dhxyk7gvrk72vjqhtqhe3gzqgl</p>
+            <button class="copy-button" data-address="bc1qn6ye3evk12cj04dhxyk7gvrk72vjqhtqhe3gzqgl">Скопировать адрес</button>
+            <p>Сумма в BTC: <strong id="crypto-amount-btc"></strong></p>
+        </div>
+
+        <button class="main-action-button" id="i-paid-crypto-btn">Я оплатил</button>
+        <button class="back-button" onclick="showPage('confirmation-page')">Назад</button>
+    </div>
+
+    <!-- Страница оплаты через СБП -->
+    <div class="container" id="sbp-payment-page" style="display: none;">
+        <h1>Оплата через СБП</h1>
+        <div class="payment-info-box">
+            <p>К оплате: <strong id="sbp-amount-display"></strong> руб.</p>
+            <p>Номер телефона: <strong>+7 929 942 81 07</strong></p>
+            <p>Банк: <strong>КБ Солидарность</strong></p>
+            <p class="payment-timer">Оплата действительна: <span id="sbp-timer">15:00</span></p>
+        </div>
+        <p>Нажмите кнопку ниже, чтобы перейти в приложение банка, или переведите вручную.</p>
+        <button class="main-action-button sbp-button" id="open-sbp-app-btn">Перейти в СБП</button>
+        <button class="main-action-button" id="i-paid-sbp-btn">Я оплатил</button>
+        <button class="back-button" onclick="showPage('confirmation-page')">Назад</button>
+    </div>
+
+    <!-- Страница проверки оплаты -->
+    <div class="container" id="check-payment-page" style="display: none;">
+        <h1>Проверка Оплаты</h1>
+        <div class="status-box">
+            <p><i class="fas fa-spinner fa-spin"></i> Ваш платеж проверяется...</p>
+            <p>Ожидайте, это займет 30 секунд.</p>
+            <p>Пожалуйста, дождитесь, пока система найдет ваш перевод.</p>
+        </div>
+        <button class="back-button" onclick="showPage('main-selection-page')">На главную</button>
+    </div>
+
+    <!-- Страница генерации QR-кода -->
+    <div class="container" id="generate-qr-page" style="display: none;">
+        <h1>Генерация QR-кода</h1>
+        <div class="status-box">
+            <p><i class="fas fa-check-circle success-icon"></i> Ваш платеж подтвержден!</p>
+            <p><i class="fas fa-sync fa-spin"></i> Генерация QR-кода...</p>
+            <p>QR-код для подключения eSIM будет готов через минуту.</p>
+            <p>Пожалуйста, дождитесь, пока система сформирует ваш QR-код.</p>
+        </div>
+        <div id="qr-code-display" style="text-align: center; margin-top: 20px; display: none;">
+            <p>Ваш QR-код:</p>
+            <img id="final-qr-code" src="" alt="QR Code" style="max-width: 200px; height: auto; border: 1px solid #eee; padding: 5px; border-radius: 5px;">
+            <p style="font-size: 0.8em; color: #888; margin-top: 10px;">Это имитация QR-кода. Для реального QR-кода нужна серверная часть и API.</p>
+        </div>
+        <button class="main-action-button" onclick="showPage('main-selection-page')">На главную</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
