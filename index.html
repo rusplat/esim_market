@@ -14,37 +14,79 @@
     </div>
 
     <div class="container">
-        <!-- Шаг 1: Выбор оператора -->
-        <div id="step-1" class="step">
-            <div class="card">
-                <h1>Выберите оператора</h1>
-                <p>Доступные сети eSIM в вашем регионе</p>
-                
-                <div class="operator-list">
-                    <div class="operator-item" onclick="selectOperator('MTC', 750)">
-                        <span>MTC</span>
-                        <span class="op-price">от 750 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('Megafon', 800)">
-                        <span>Megafon</span>
-                        <span class="op-price">от 800 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('Beeline', 850)">
-                        <span>Beeline</span>
-                        <span class="op-price">от 850 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('Tele2', 900)">
-                        <span>Tele2</span>
-                        <span class="op-price">от 900 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('Yota', 950)">
-                        <span>Yota</span>
-                        <span class="op-price">от 950 ₽</span>
-                    </div>
+        <!-- Шаг 1: Выбор оператора (ВРАЗНОБОЙ) -->
+<div id="step-1" class="step">
+    <div class="card">
+        <h1>Выберите оператора</h1>
+        <p class="subtitle">Мгновенная активация eSIM</p>
+        
+        <div class="operator-list">
+            <!-- Порядок изменен -->
+            <div class="operator-item" onclick="selectOperator('Tele2', 900)">
+                <span>Tele2</span>
+                <span class="op-price">от 900 ₽</span>
+            </div>
+            <div class="operator-item" onclick="selectOperator('MTC', 750)">
+                <span>MTC</span>
+                <span class="op-price">от 750 ₽</span>
+            </div>
+            <div class="operator-item" onclick="selectOperator('Yota', 950)">
+                <span>Yota</span>
+                <span class="op-price">от 950 ₽</span>
+            </div>
+            <div class="operator-item" onclick="selectOperator('Beeline', 850)">
+                <span>Beeline</span>
+                <span class="op-price">от 850 ₽</span>
+            </div>
+            <div class="operator-item" onclick="selectOperator('Megafon', 800)">
+                <span>Megafon</span>
+                <span class="op-price">от 800 ₽</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Шаг 2: Ввод Email -->
+<div id="step-2" class="step hidden">
+    <div class="card">
+        <h1 id="selected-op-name">eSIM</h1>
+        <div class="price-tag" id="final-price">0 ₽</div>
+        
+        <input type="email" id="user-email" placeholder="example@mail.com" class="apple-input">
+        <!-- Добавленная надпись -->
+        <p class="input-hint">На этот адрес мы отправим QR-код с подробной инструкцией по активации сразу после оплаты.</p>
+        
+        <button class="btn" onclick="goToStep(3)">Продолжить</button>
+        <button class="btn btn-secondary" onclick="goToStep(1)">Изменить оператора</button>
+    </div>
+</div>
+
+<!-- Шаг 3: Оплата (Телефон теперь будет белым) -->
+<div id="step-3" class="step hidden">
+    <div class="card">
+        <h1>Оплата</h1>
+        <div id="timer" class="timer">05:00</div>
+        
+        <div id="payment-methods">
+            <div class="payment-group">
+                <p class="label">СБП (Банк КБ Солидарность)</p>
+                <div class="payment-info" onclick="copyText('+79299428107')">
+                    +7 929 942 81 07
+                    <small>Нажмите, чтобы скопировать</small>
+                </div>
+            </div>
+            
+            <div class="payment-group">
+                <p class="label">USDT (TRC20)</p>
+                <div class="payment-info" onclick="copyText('TTxL8srvCqom7RebeyZAjuWyActK9R9SD4')">
+                    TTxL8srvCqom7RebeyZAjuWyActK9R9SD4
+                    <small>Нажмите, чтобы скопировать</small>
                 </div>
             </div>
         </div>
-
+        <!-- ... остальной код (ошибка и кнопки) без изменений ... -->
+    </div>
+</div>
         <!-- Шаг 2: Подтверждение и Email -->
         <div id="step-2" class="step hidden">
             <div class="card">
