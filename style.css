@@ -5,44 +5,39 @@
     --text-primary: #ffffff;
     --text-secondary: #8e8e93;
     --system-red: #ff453a;
-    --border-color: #38383a;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
 }
 
-.container {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
+/* Фикс синих ссылок для телефонов */
+.payment-info, .payment-info * {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
+
+.container { width: 100%; max-width: 420px; padding: 20px; }
 
 #loader {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 1000; backdrop-filter: blur(20px);
 }
 
 .spinner {
-    width: 30px;
-    height: 30px;
-    border: 2px solid rgba(255,255,255,0.1);
-    border-top: 2px solid var(--text-primary);
+    width: 35px; height: 35px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top: 3px solid #ffffff;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -51,92 +46,64 @@ body {
 
 .card {
     background: var(--card-bg);
-    border-radius: 24px;
-    padding: 30px 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-radius: 28px;
+    padding: 35px 25px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
 }
 
-h1 { font-size: 26px; font-weight: 700; margin-bottom: 10px; text-align: center; letter-spacing: -0.5px; }
-p { color: var(--text-secondary); text-align: center; font-size: 16px; margin-bottom: 25px; line-height: 1.4; }
+h1 { font-size: 28px; font-weight: 700; text-align: center; letter-spacing: -0.5px; margin-bottom: 10px; }
+.subtitle { color: var(--text-secondary); text-align: center; font-size: 16px; margin-bottom: 30px; }
 
-/* Список операторов */
 .operator-item {
     background: #2c2c2e;
-    padding: 18px 20px;
-    border-radius: 16px;
+    padding: 20px;
+    border-radius: 18px;
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: background 0.2s;
-    border: 1px solid transparent;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-.operator-item:active { background: #3a3a3c; transform: scale(0.98); }
 .op-price { color: var(--accent-color); font-weight: 600; }
 
-/* Инпуты */
 .apple-input {
-    width: 100%;
-    background: #2c2c2e;
-    border: none;
-    border-radius: 12px;
-    padding: 16px;
-    color: white;
-    font-size: 17px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
+    width: 100%; background: #2c2c2e; border: 1px solid #3a3a3c;
+    border-radius: 14px; padding: 18px; color: white; font-size: 17px;
+    margin-bottom: 10px; box-sizing: border-box; outline: none;
+}
+
+.input-hint {
+    color: var(--text-secondary); font-size: 13px; text-align: center;
+    margin-bottom: 25px; line-height: 1.4; padding: 0 10px;
 }
 
 .btn {
-    background: var(--text-primary);
-    color: var(--bg-color);
-    border: none;
-    border-radius: 14px;
-    padding: 18px;
-    width: 100%;
-    font-size: 17px;
-    font-weight: 600;
+    background: #ffffff; color: #000000; border: none;
+    border-radius: 16px; padding: 20px; width: 100%;
+    font-size: 17px; font-weight: 600; cursor: pointer;
+}
+
+.btn-secondary { background: transparent; color: var(--accent-color); margin-top: 10px; }
+
+.price-tag { font-size: 48px; font-weight: 800; text-align: center; margin: 25px 0; letter-spacing: -1px; }
+
+.payment-group { margin-bottom: 22px; }
+.label { font-size: 12px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 10px; font-weight: 600; }
+
+.payment-info {
+    background: #2c2c2e; padding: 18px; border-radius: 15px;
+    font-family: 'SF Mono', monospace; font-size: 15px;
+    border: 1px solid #3a3a3c; position: relative;
     cursor: pointer;
 }
 
-.btn-secondary { background: transparent; color: var(--accent-color); margin-top: 5px; }
-
-.price-tag { font-size: 42px; font-weight: 800; text-align: center; margin: 20px 0; }
-
-.payment-group { margin-bottom: 20px; text-align: left; }
-.label { font-size: 13px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; text-align: left; }
-
-.payment-info {
-    background: #2c2c2e;
-    padding: 16px;
-    border-radius: 12px;
-    font-family: 'SF Mono', monospace;
-    font-size: 14px;
-    word-break: break-all;
-    border: 1px solid var(--border-color);
-    position: relative;
-}
-
 .payment-info small {
-    display: block;
-    font-size: 10px;
-    color: var(--accent-color);
-    margin-top: 5px;
-    font-family: sans-serif;
+    display: block; font-size: 11px; color: var(--accent-color);
+    margin-top: 8px; font-family: sans-serif; font-weight: 500;
 }
 
-.timer { color: var(--system-red); font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 20px; }
-
-.error-box {
-    background: rgba(255, 69, 58, 0.1);
-    border: 1px solid var(--system-red);
-    border-radius: 12px;
-    padding: 15px;
-    color: var(--system-red);
-    font-size: 14px;
-    line-height: 1.4;
-}
+.timer { color: var(--system-red); font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 25px; }
 
 .hidden { display: none; }
