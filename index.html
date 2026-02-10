@@ -8,40 +8,23 @@
 </head>
 <body>
 
-    <!-- Экран загрузки (4 секунды) -->
     <div id="loader">
         <div class="spinner"></div>
         <p style="margin-top: 15px; font-weight: 300; letter-spacing: 0.5px;">Установка защищенного соединения...</p>
     </div>
 
     <div class="container">
-        <!-- Шаг 1: Выбор оператора (вразнобой) -->
+        <!-- Шаг 1: Выбор оператора -->
         <div id="step-1" class="step">
             <div class="card">
                 <h1>Выберите оператора</h1>
                 <p class="subtitle">Мгновенное подключение eSIM</p>
-                
                 <div class="operator-list">
-                    <div class="operator-item" onclick="selectOperator('Tele2', 900)">
-                        <span>Tele2</span>
-                        <span class="op-price">от 900 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('MTC', 750)">
-                        <span>MTC</span>
-                        <span class="op-price">от 750 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('Yota', 950)">
-                        <span>Yota</span>
-                        <span class="op-price">от 950 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('Beeline', 850)">
-                        <span>Beeline</span>
-                        <span class="op-price">от 850 ₽</span>
-                    </div>
-                    <div class="operator-item" onclick="selectOperator('Megafon', 800)">
-                        <span>Megafon</span>
-                        <span class="op-price">от 800 ₽</span>
-                    </div>
+                    <div class="operator-item" onclick="selectOperator('Tele2', 900)"><span>Tele2</span><span class="op-price">от 900 ₽</span></div>
+                    <div class="operator-item" onclick="selectOperator('MTC', 750)"><span>MTC</span><span class="op-price">от 750 ₽</span></div>
+                    <div class="operator-item" onclick="selectOperator('Yota', 950)"><span>Yota</span><span class="op-price">от 950 ₽</span></div>
+                    <div class="operator-item" onclick="selectOperator('Beeline', 850)"><span>Beeline</span><span class="op-price">от 850 ₽</span></div>
+                    <div class="operator-item" onclick="selectOperator('Megafon', 800)"><span>Megafon</span><span class="op-price">от 800 ₽</span></div>
                 </div>
             </div>
         </div>
@@ -50,20 +33,24 @@
         <div id="step-2" class="step hidden">
             <div class="card">
                 <h1 id="selected-op-name">eSIM</h1>
-                <div class="price-tag" id="final-price">0 ₽</div>
-                
+                <div class="price-tag-preview" id="preview-price">0 ₽</div>
                 <input type="email" id="user-email" placeholder="example@mail.com" class="apple-input">
                 <p class="input-hint">На этот адрес мы отправим QR-код с подробной инструкцией по активации сразу после оплаты.</p>
-                                <button class="btn" onclick="goToStep(3)">Продолжить</button>
+                <button class="btn" onclick="goToStep(3)">Продолжить</button>
                 <button class="btn btn-secondary" onclick="goToStep(1)">Изменить оператора</button>
             </div>
         </div>
 
-        <!-- Шаг 3: Оплата -->
+        <!-- Шаг 3: Оплата (ОБНОВЛЕННЫЙ) -->
         <div id="step-3" class="step hidden">
             <div class="card">
                 <h1>Оплата</h1>
                 <div id="timer" class="timer">05:00</div>
+                                <!-- Блок с суммами -->
+                <div class="total-payment-box">
+                    <div class="total-label">К ОПЛАТЕ:</div>
+                    <div class="total-amount" id="pay-amount-rub">0 ₽</div>
+                </div>
                 
                 <div id="payment-content">
                     <div id="payment-methods">
@@ -76,7 +63,7 @@
                         </div>
                         
                         <div class="payment-group">
-                            <p class="label">USDT (TRC20)</p>
+                            <p class="label">USDT (TRC20) — <span id="pay-amount-usdt" style="color: #34c759;">0 USDT</span></p>
                             <div class="payment-info" onclick="copyText('TTxL8srvCqom7RebeyZAjuWyActK9R9SD4')">
                                 <span class="white-link">TTxL8srvCqom7RebeyZAjuWyActK9R9SD4</span>
                                 <small>Нажмите, чтобы скопировать адрес</small>
@@ -86,7 +73,7 @@
 
                     <div id="error-message" class="hidden">
                         <div class="error-box">
-                            Оплата не найдена. Ожидайте возврат средств или попробуйте обновить статус через несколько минут.
+                            Оплата не найдена. Ожидайте возврат средств или попробуйте обновить статус позже.
                         </div>
                     </div>
 
@@ -96,7 +83,6 @@
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
